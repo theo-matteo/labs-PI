@@ -11,14 +11,15 @@ import org.apache.commons.csv.CSVRecord;
 
 public class DataProcessor {
 
-    public static ArrayList<Map<String, Double>> getDataSummary(int year, Genero genero) throws Exception {
+    public static ArrayList<Map<String, Double>> getDataSummary(String filename, int year, Genero genero)
+            throws Exception {
 
         ArrayList<Map<String, Double>> array = new ArrayList<>();
         String headerExpectationYears = genero == Genero.MASCULINO
                 ? "Life expectancy - Sex: male - Age: 0 - Variant: estimates"
                 : "Life expectancy - Sex: female - Age: 0 - Variant: estimates";
 
-        Reader in = new FileReader("data.csv");
+        Reader in = new FileReader(filename);
         Iterable<CSVRecord> records = CSVFormat.EXCEL.builder()
                 .setHeader()
                 .setSkipHeaderRecord(true)
